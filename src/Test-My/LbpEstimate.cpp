@@ -1,5 +1,5 @@
 /*
- * g++ -o MyTest -Wall -std=c++11 MyTest.cpp `pkg-config --cflags --libs opencv` -I../ libSimd.a -lpthread
+ * g++ -o LbpEstimate -Wall -std=c++11 LbpEstimate.cpp `pkg-config --cflags --libs opencv` -I../ libSimd.a -lpthread
 */
 
 #include <iostream>
