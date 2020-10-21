@@ -1,10 +1,12 @@
 CXX = g++
 CXXFLAGS += -std=c++11 -Wall -g
-CPPFLAGS += `pkg-config --cflags opencv hdf5` -I../ 
-LDFLAGS  += `pkg-config --libs   opencv hdf5` libSimd.a \
+CPPFLAGS += `pkg-config --cflags opencv hdf5` -I../
+LDFLAGS  += `pkg-config --libs   opencv hdf5` \
+	    ../../prj/cmake/libSimd.a \
             -lpthread -lz -lm -lrt -ldl
 
-SRC += MyTest.cpp MyLog.cpp lbpViewLog.cpp
+SRC += main.cpp lbpHistogramTest.cpp\
+       ../lbpSrc/LbpHistogram.cpp ../lbpSrc/LbpViewLogger.cpp ../lbpSrc/StrLogger.cpp
 
 OBJS += $(patsubst %.cpp, %.o, $(SRC))
 

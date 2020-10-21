@@ -1,5 +1,5 @@
 /*
- * g++ -o MyTest -Wall -std=c++11 MyTest.cpp `pkg-config --cflags --libs opencv` -I../ libSimd.a -lpthread
+ * g++ -o LbpEstimateTest -Wall -std=c++11 LbpEstimateTest.cpp `pkg-config --cflags --libs opencv` -I../ libSimd.a -lpthread
 */
 
 #include <iostream>
@@ -8,8 +8,8 @@
 #include "opencv2/opencv.hpp"
 #include "Simd/SimdLib.hpp"
 
-#include "MyLog.h"
-#include "lbpViewLog.h"
+#include "lbpSrc/StrLogger.h"
+#include "lbpSrc/LbpViewLogger.h"
 
 typedef Simd::View<Simd::Allocator> View;
 

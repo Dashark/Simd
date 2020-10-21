@@ -1,8 +1,9 @@
 #include <assert.h>
+#include <string.h>
 
-#include "lbpViewLog.h"
+#include "lbpSrc/LbpViewLogger.h"
 
-lbpViewLog::lbpViewLog(const std::string &h5file_name, const std::string  &dataset_name, int nx, int ny, hid_t type_id, H5T_order_t order) {
+lbpViewLogger::lbpViewLogger(const std::string &h5file_name, const std::string  &dataset_name, int width, int height, hid_t type_id, H5T_order_t order) {
     /*
      * Create a new file using H5F_ACC_TRUNC access,
      * default file creation properties, and default file
@@ -14,8 +15,8 @@ lbpViewLog::lbpViewLog(const std::string &h5file_name, const std::string  &datas
      * Describe the size of the array and create the data space for fixed
      * size dataset.
      */
-    dimsf[0] = nx;
-    dimsf[1] = ny;
+    dimsf[0] = height;
+    dimsf[1] = width;
     dataspace = H5Screate_simple(2, dimsf, NULL);
 
     /*
@@ -34,7 +35,7 @@ lbpViewLog::lbpViewLog(const std::string &h5file_name, const std::string  &datas
     dataset = H5Dcreate2(file, dataset_name.c_str(), datatype, dataspace, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
 }
 
-lbpViewLog::~lbpViewLog() {
+lbpViewLogger::~lbpViewLogger() {
     /*
      * Close/release resources.
      */
@@ -44,11 +45,25 @@ lbpViewLog::~lbpViewLog() {
     H5Fclose(file);
 }
 
- void lbpViewLog::write(const uint8_t *data) {
+ void lbpViewLogger::write(const uint8_t *data, size_t stride, size_t width, size_t height) {
      assert(type_id_ == H5T_NATIVE_UCHAR);
      /*
      * Write the data to the dataset using default transfer properties.
      */
-     status = H5Dwrite(dataset, type_id_, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
-     assert(status >= 0);
+    if (stride == width) {
+        status = H5Dwrite(dataset, type_id_, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
+    } else { //data数组有空位, 需处理
+        uint8_t *dest = new uint8_t[width * height](); //初始化为0
+
+        for (size_t row = 0; row < height; row++) {
+            memcpy(&dest[row*width], &data[row*stride], width);
+        }
+
+        status = H5Dwrite(dataset, type_id_, H5S_ALL, H5S_ALL, H5P_DEFAULT, dest);
+
+        delete []dest;
+    }
+    
+    assert(status >= 0);
  }
+
