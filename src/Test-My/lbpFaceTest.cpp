@@ -25,7 +25,7 @@ int main(int argc, char * argv[]) {
     const char * WINDOW_NAME = "FaceDetection";
     cv::namedWindow(WINDOW_NAME, 1);
 
-    cv::Mat frame = cv::imread(std::string(argv[1]));;
+    cv::Mat frame = cv::imread(std::string(argv[1]));
 
     Detection::View image = frame;
 
