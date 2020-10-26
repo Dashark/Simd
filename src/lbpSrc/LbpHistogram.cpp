@@ -37,15 +37,6 @@ HistogramPack LbpHistogram::getHistogramPack(size_t x, size_t y, size_t width, s
     }
     memset(dst, 0, width); //最后一行数据置零
 
-    std::string file_name{"temp/View-"};
-    file_name += std::to_string(x);
-    file_name.append("-");
-    file_name += std::to_string(y);
-    file_name.append(".h5");
-
-    lbpViewLogger logger(file_name, "UcharArray", temp.width, temp.height); //Test***
-    logger.write(temp.data, temp.stride, temp.width, temp.height);
-
     Simd::Base::Histogram(temp.data, temp.width, temp.height, temp.stride, histogramPack.data());
 
     return histogramPack;
