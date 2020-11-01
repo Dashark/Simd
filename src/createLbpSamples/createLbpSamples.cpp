@@ -36,9 +36,9 @@ int main(int argc, char* argv[]) {
     int height = 24;
 
     if( argc == 1 || !strcmp(argv[1], "--help") ) {
-        printf( "Usage: %s\n  [-data <转换后文件存放位置>]\n"
-                "  [-info <正样本描述文件路径>]\n"
-                "  [-bg <负样本描述文件路径>]\n"
+        printf( "Usage: %s\n  [-data <转换后文件存放目录>]\n"
+                "  [-info <正样本描述文件>]\n"
+                "  [-bg <负样本描述文件>]\n"
                 "  [-w <压缩图宽，默认 %d>]\n  [-h <压缩图高，默认 %d>]\n",
                 argv[0], width, height);
 

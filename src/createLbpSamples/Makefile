@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS += -std=c++11 -Wall -g
 CPPFLAGS += `pkg-config --cflags opencv hdf5 glib-2.0` -I../
-LDFLAGS  += `pkg-config --libs   opencv hdf5 glib-2.0` \
+LDFLAGS  += `pkg-config --libs   opencv glib-2.0` libhdf5.a \
 	    ../../prj/cmake/libSimd.a \
             -lpthread -lz -lm -lrt -ldl
 
