@@ -1,0 +1,20 @@
+{
+    "positive_folder": {
+      "original": "/home/test/pictures_/my_test_sample/pos",
+      "grayscale": "/home/test/pictures_/my_test_sample_gray/pos"
+    },
+    "negative_folder": {
+      "original": "/home/test/pictures_/my_test_sample/neg",
+      "grayscale": "/home/test/pictures_/my_test_sample_gray/neg"
+    },
+    "train_set": {
+      "train_label": "face",
+      "train_folder": "/home/test/pictures_/train_foldder",
+      "app_pic_size": {
+        "width": 20,
+        "height": 10
+      },
+      "adaBoostApp-use": true,
+      "openCV-use": false
+    }
+}
