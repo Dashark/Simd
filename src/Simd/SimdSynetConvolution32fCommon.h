@@ -42,7 +42,7 @@ namespace Simd
 
     namespace Base
     {
-        template<::SimdConvolutionActivationType type> SIMD_INLINE float Activate(float value, const float * params, size_t offset);
+      template</**/::SimdConvolutionActivationType type> SIMD_INLINE float Activate(float value, const float * params, size_t offset);
 
         template<> SIMD_INLINE float Activate<SimdConvolutionActivationIdentity>(float value, const float * params, size_t offset)
         {

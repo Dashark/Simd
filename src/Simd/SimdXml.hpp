@@ -30,6 +30,7 @@
 #include <exception> 
 #include <iostream>
 #include <iterator>
+#include <stdexcept>
 
 namespace Simd
 {
